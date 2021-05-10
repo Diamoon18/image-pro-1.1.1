@@ -183,3 +183,41 @@ Also stores RGB values in two-dimensional arrays.
 ...
 ```
 ```medianaFilter()``` - this method has the main logic of the mediana filter.
+```java
+			     int[][] R = new int[width][height];
+			     int[][] G = new int[width][height];
+			     int[][] B = new int[width][height];
+				 
+			     int[] maskR=new int[9];
+			     int[] maskG=new int[9];
+			     int[] maskB=new int[9];
+```
+```java
+int d = 0;
+for(int k = -1; k <= 1; k++) {
+		  for(int l = -1; l <= 1; l++) {
+			 Color c = new Color(image.getRGB(j+k, i+l));
+			 int red = (int)(c.getRed());
+			 int green = (int)(c.getGreen());
+			 int blue = (int)(c.getBlue());
+
+			 maskR[d] = red;
+			 maskG[d] = green;
+			 maskB[d] = blue;
+			 d+=1;
+		}
+	  }
+```
+```java
+Arrays.sort(maskR);
+Arrays.sort(maskG);
+Arrays.sort(maskB);
+
+x = maskR[4];
+y = maskG[4];
+z = maskB[4];
+//System.out.println(x + " " + y + " " + z);
+R[j][i] = x;
+G[j][i] = y;
+B[j][i] = z;
+```
