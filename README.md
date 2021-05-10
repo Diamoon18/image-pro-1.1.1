@@ -132,7 +132,8 @@ switch(filtr){
 		...
 ```
 ```minFilter()``` - this method has the main logic of the min filter.\
-As in the Box filter we use the same algorithm, but with the difference that we need to find the smallest values RGB here.
+As in the Box filter we use the same algorithm, but with the difference that we need to find the smallest values RGB here.\
+Also stores RGB values in two-dimensional arrays.
 ```java
 	int rmin, gmin, bmin;
 	int[][] R = new int[width][height];
