@@ -169,9 +169,16 @@ As in the Box filter we use the same algorithm, but with the difference that we 
  bmin = 0;
  gmin = 0;
  ...
-  if (rmin < red) rmin = red;
-  if (gmin < green) gmin = green;
-  if (bmin < blue) bmin = blue;
+  for(int k = -1; k <= 1; k++) {
+ 	for(int l = -1; l <= 1; l++) {
+	 	Color c = new Color(image.getRGB(j+k, i+l));
+	 	int red = (int)(c.getRed());
+	 	int green = (int)(c.getGreen());
+	 	int blue = (int)(c.getBlue());
+
+  		if (rmin < red) rmin = red;
+  		if (gmin < green) gmin = green;
+  		if (bmin < blue) bmin = blue;
 ...
 ```
 ```medianaFilter()``` - this method has the main logic of the mediana filter.
