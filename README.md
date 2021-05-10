@@ -13,7 +13,7 @@ New features in "Other":
 Board class - new buttons have been added for the ```Other```.
 ```java
 ...
-if(e.equals(oth.otherButtons[3])) {
+			if(e.equals(oth.otherButtons[3])) {
 				e.color1 = color_change;
 				if (otherView.click_o) {
 					if(!otherModel.picturePathIsEmpty()) {
@@ -56,27 +56,27 @@ New class ```questionFormSharp``` - this class is for sharpening filters (select
 Main logic is in ```otherModel.sharpen(double[][] maska, String filtr)```
 ```java
 public static void filtrSharp() {
-			 String[] choices = { "Robertsa horizontal", "Prewitta horizontal", "Sobela horizontal",
-					"Robertsa vertical", "Prewitta vertical", "Sobela vertical", "Laplace’a" };
-			 String input = " ";
-			 input = (String) JOptionPane.showInputDialog(null, "Choose mode",
+		 String[] choices = { "Robertsa horizontal", "Prewitta horizontal", "Sobela horizontal",
+				"Robertsa vertical", "Prewitta vertical", "Sobela vertical", "Laplace’a" };
+		 String input = " ";
+		 input = (String) JOptionPane.showInputDialog(null, "Choose mode",
 	            "Sharpen filtr", JOptionPane.QUESTION_MESSAGE, null,
 	            choices, 
 	            choices[0]);
 			 
-			 if(input == null) {
-				 input = choices[0];
-			 }
-			 
-			 // horizontal
-			 if (input.equals(choices[0])) {
-				 filtr = "robH";
-			     otherModel.sharpen(maskInit(filtr), filtr);
-			 }
-			 if (input.equals(choices[1])) {
-				 filtr = "preH";
-				 otherModel.sharpen(maskInit(filtr), filtr);
-			 }
+		 if(input == null) {
+			 input = choices[0];
+		 }
+
+		 // horizontal
+		 if (input.equals(choices[0])) {
+			 filtr = "robH";
+		     otherModel.sharpen(maskInit(filtr), filtr);
+		 }
+		 if (input.equals(choices[1])) {
+			 filtr = "preH";
+			 otherModel.sharpen(maskInit(filtr), filtr);
+		 }
        ...
 ```
 Then, depending on the user's choice, we use the method ```maskInit(String choose)``` to fill the mask with values.\
@@ -107,26 +107,27 @@ As in the Box filter we use the same algorithm, but with the difference that we 
 ```java
 ...
              x = Math.abs(x);
-						 y = Math.abs(y);
-						 z = Math.abs(z);
+	     y = Math.abs(y);
+	     z = Math.abs(z);
 ...
 ```
 Also stores RGB values in two-dimensional arrays.
 ```java
          int[][] R = new int[width][height];
-				 int[][] G = new int[width][height];
-				 int[][] B = new int[width][height];
+	 int[][] G = new int[width][height];
+	 int[][] B = new int[width][height];
          ...
 ```
 Depending on the filter value, name the image accordingly.
 ```java
 switch(filtr){
-				 	case "robH":
-			 			 output = new File(picturePath.replace(".jpg", "_robertsH_filtr.jpg"));
-						 ImageIO.write(image, "jpg", output);
-						 break;
-			 		case "preH":
-			 			 output = new File(picturePath.replace(".jpg", "_prewitH_filtr.jpg"));
-						 ImageIO.write(image, "jpg", output);
-						 break;
+	case "robH":
+ 		output = new File(picturePath.replace(".jpg", "_robertsH_filtr.jpg"));
+ 		ImageIO.write(image, "jpg", output);
+ 		break;
+	case "preH":
+ 		output = new File(picturePath.replace(".jpg", "_prewitH_filtr.jpg"));
+ 		ImageIO.write(image, "jpg", output);
+ 		break;
+		...
 ```
