@@ -102,7 +102,7 @@ private static double[][] maskInit(String choose) {
 		 			mask[0][1] = 1;
           ....
 ```
-class otherModel have new metod ```sharpen(double[][] maska, String filtr)``` - the main logic of sharpening filters.\
+class otherModel has new metod ```sharpen(double[][] maska, String filtr)``` - the main logic of sharpening filters.\
 As in the Box filter we use the same algorithm, but with the difference that we have to give the absolute value here, because we have negative values in the mask.
 ```java
 ...
@@ -131,3 +131,47 @@ switch(filtr){
  		break;
 		...
 ```
+```minFilter()``` - this method has the main logic of the min filter.\
+As in the Box filter we use the same algorithm, but with the difference that we need to find the smallest values RGB here.
+```java
+	int rmin, gmin, bmin;
+	int[][] R = new int[width][height];
+        int[][] G = new int[width][height];
+        int[][] B = new int[width][height];
+	...
+	 rmin = 255;
+	 bmin = 255;
+	 gmin = 255;
+	 ...
+	 
+ for(int k = -1; k <= 1; k++) {
+ 	for(int l = -1; l <= 1; l++) {
+	 	Color c = new Color(image.getRGB(j+k, i+l));
+	 	int red = (int)(c.getRed());
+	 	int green = (int)(c.getGreen());
+	 	int blue = (int)(c.getBlue());
+
+		if (rmin > red) rmin = red;
+	 	if (gmin > green) gmin = green;
+	 	if (bmin > blue) bmin = blue;
+
+ 	}
+ }
+ 	R[j][i] = rmin;
+	G[j][i] = gmin;
+	B[j][i] = bmin;
+ ...
+```
+```maxFilter()``` - by analogy with min filter, but with some differences that we need to find the biggest values RGB here.
+```java
+...
+ rmin = 0;
+ bmin = 0;
+ gmin = 0;
+ ...
+  if (rmin < red) rmin = red;
+  if (gmin < green) gmin = green;
+  if (bmin < blue) bmin = blue;
+...
+```
+```medianaFilter()``` - this method has the main logic of the mediana filter.
