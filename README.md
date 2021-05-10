@@ -1,6 +1,6 @@
 # image-pro-1.1.1
 Update image pro 1.1.0\
-```10 new filters```
+```10 new filters```\
 New features in "Other":\
 1.Sharpen filters\
 2.Min and max filters\
