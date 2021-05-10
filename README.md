@@ -182,7 +182,9 @@ Also stores RGB values in two-dimensional arrays.
   		if (bmin < blue) bmin = blue;
 ...
 ```
-```medianaFilter()``` - this method has the main logic of the mediana filter.
+```medianaFilter()``` - this method has the main logic of the mediana filter.\
+Stores RGB values in two-dimensional arrays.\
+Create masks of individual RGB colors.\
 ```java
 			     int[][] R = new int[width][height];
 			     int[][] G = new int[width][height];
@@ -192,9 +194,10 @@ Also stores RGB values in two-dimensional arrays.
 			     int[] maskG=new int[9];
 			     int[] maskB=new int[9];
 ```
+Fill these masks with values RGB from the image.
 ```java
 int d = 0;
-for(int k = -1; k <= 1; k++) {
+	      for(int k = -1; k <= 1; k++) {
 		  for(int l = -1; l <= 1; l++) {
 			 Color c = new Color(image.getRGB(j+k, i+l));
 			 int red = (int)(c.getRed());
@@ -208,6 +211,7 @@ for(int k = -1; k <= 1; k++) {
 		}
 	  }
 ```
+Sorts these arrays and writes the middle to the result, that is, finds the median.
 ```java
 Arrays.sort(maskR);
 Arrays.sort(maskG);
